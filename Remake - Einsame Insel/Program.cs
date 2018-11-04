@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -207,11 +207,10 @@ namespace Remake___Einsame_Insel
 
         // METHODEN
         // Hauptmenü Überschrifft
-        static void HauptUeberschrift(float Ver)
+        static void HauptUeberschrift(float version)
         {
-            Console.WriteLine($"Version:  {Ver} \n-----------------------------------");
-            Console.WriteLine("Willkommen auf einer einsamen Insel");
-            Console.WriteLine("-----------------------------------");
+            Console.WriteLine($"Version:  {version}");
+            MenueBuilder("Willkommen auf der einsamen Insel");
         }
 
         // Hauptmenü Benutzereingaben
@@ -225,10 +224,10 @@ namespace Remake___Einsame_Insel
         }
 
         // Credits Beschreibung
-        static void Credits(float Ver)
+        static void Credits(float version)
         {
             Console.WriteLine("-----------------------------------------------");
-            Console.WriteLine("Remake - Einsame Insel Version " + Ver);
+            Console.WriteLine("Remake - Einsame Insel Version " + version);
             Console.WriteLine("Concept, Development, Design by Denis Kliem\n\n");
             Console.WriteLine("Copyright 2018 by Denis Kliem");
             Console.WriteLine("-----------------------------------------------");
@@ -237,9 +236,7 @@ namespace Remake___Einsame_Insel
         // Für die Level Info Beschreibung
         static void LevelInfo()
         {
-            Console.WriteLine("-------------------");
-            Console.WriteLine("Level Informationen");
-            Console.WriteLine("-------------------");
+            MenueBuilder("Level Informationen");
             Console.WriteLine("Leicht:\n-Für alle die schnell vorankommen möchten!-\n");
             Console.WriteLine("Normal:\n-Upgradekosten sind höher als bei Leicht, Rest gleich.-\n");
             Console.WriteLine("Schwer:\n-Weniger pro Abbau, Upgrades Teurer, Kosten pro Upgrades erhöhen sich stark!-");
@@ -257,9 +254,7 @@ namespace Remake___Einsame_Insel
         // Ressourcen Menü
         static void ResMenue(int holz, int getHolz, int eisen, int getEisen, int gold, int getGold, int haus, int villa)
         {
-            Console.WriteLine("----");
-            Console.WriteLine("Menü");
-            Console.WriteLine("----");
+            MenueBuilder("Menü");
             Console.WriteLine("Momentan hast du:");
             Console.WriteLine($"Holz: {holz}\t Du bekommst pro Abbau:\t {getHolz} Holz");
             Console.WriteLine($"Eisen: {eisen}\t Du bekommst pro Abbau:\t {getEisen} Holz");
@@ -283,9 +278,7 @@ namespace Remake___Einsame_Insel
         // Haus kaufen
         static string HausMenue(int kostenHausHolz, int kostenHausGold, int addHausEisen, int addHausGold)
         {
-            Console.WriteLine("------------------------------");
-            Console.WriteLine("Hier kannst du ein Haus Kaufen");
-            Console.WriteLine("------------------------------");
+            MenueBuilder("Hier kannst du ein Haus kaufen");
             Console.WriteLine("Ein Haus kostet:");
             Console.WriteLine($"{kostenHausHolz} Holz");
             Console.WriteLine($"{kostenHausGold} Gold\n");
@@ -300,9 +293,7 @@ namespace Remake___Einsame_Insel
         // Villa kaufen
         static string VillaMenue(int kostenVillaEisen, int kostenVillaGold, int addVillaHolz, int addVillaGold)
         {
-            Console.WriteLine("-------------------------------");
-            Console.WriteLine("Hier kannst du eine Villa Kaufen");
-            Console.WriteLine("-------------------------------");
+            MenueBuilder("Hier kannst du eine Villa kaufen");
             Console.WriteLine("Eine Villa kostet:");
             Console.WriteLine($"{kostenVillaEisen} Eisen");
             Console.WriteLine($"{kostenVillaGold} Gold\n");
@@ -314,5 +305,27 @@ namespace Remake___Einsame_Insel
             return strEingabe;
         }
 
-    }
+        static void MenueBuilder(String title)
+        {
+            int length = title.Length;
+            MenueBuilderLine(length, "-");
+
+            Console.WriteLine(title);
+
+            MenueBuilderLine(length, "-");
+
+
+        }
+
+        static void MenueBuilderLine(int length,String character)
+        {
+            for (int i = 0; i < length; i++)
+            {
+                Console.Write(character);
+            }
+            Console.WriteLine();
+        }
+
 }
+}
+
