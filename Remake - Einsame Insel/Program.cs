@@ -9,40 +9,39 @@ namespace Remake___Einsame_Insel
 {
     class Program
     {
+        // Level Variablen
+        static int neuesLevel = 1;
+
+        // Ressourcen
+        static int holz = 0;
+        static int getHolz = 0;
+        static int eisen = 0;
+        static int getEisen = 0;
+        static int gold = 0;
+        static int getGold = 0;
+        static int haus = 0;
+        static int villa = 0;
+
+        // Gebäude
+        static int kostenHausHolz = 0;
+        static int kostenHausGold = 0;
+        static int addHausEisen = 0;
+        static int addHausGold = 0;
+        static int kostenVillaEisen = 0;
+        static int kostenVillaGold = 0;
+        static int addVillaHolz = 0;
+        static int addVillaGold = 0;
+
         static void Main(string[] args)
         {
             // Version
-            float fVersion = 0.6f;
+            string strVersion = "Alpha 0.65";
 
             // Variablen
             string strEingabe;
-
-            // Level Variablen
-            int neuesLevel = 1;
-
-            // Ressourcen
-            int holz = 0;
-            int getHolz = 0;
-            int eisen = 0;
-            int getEisen = 0;
-            int gold = 0;
-            int getGold = 0;
-            int haus = 0;
-            int villa = 0;
-
-            // Gebäude
-            int kostenHausHolz = 0;
-            int kostenHausGold = 0;
-            int addHausEisen = 0;
-            int addHausGold = 0;
-            int kostenVillaEisen = 0;
-            int kostenVillaGold = 0;
-            int addVillaHolz = 0;
-            int addVillaGold = 0;
-
-
+            
             // Hauptmenü Überschrift
-            HauptUeberschrift(fVersion);
+            HauptUeberschrift(strVersion);
 
             // Schleifen Beginn für das Spiel
             do
@@ -112,12 +111,12 @@ namespace Remake___Einsame_Insel
                                         break;
                                     case "a":
                                         {
-                                            Haus.HausKaufenMenue(holz, getEisen, gold, getGold, haus, kostenHausHolz, kostenHausGold, addHausEisen, addHausGold);
+                                            Haus.HausKaufenMenue(kostenHausHolz, kostenHausGold, addHausEisen, addHausGold);
                                         }
                                         break;
                                     case "v":
                                         {
-                                            Villa.VillaKaufenMenue(getHolz, eisen, gold, getGold, villa, kostenVillaEisen, kostenVillaGold, addVillaHolz, addVillaGold);
+                                            Villa.VillaKaufenMenue(kostenVillaEisen, kostenVillaGold, addVillaHolz, addVillaGold);
                                         }
                                         break;
                                     case "b":
@@ -127,7 +126,11 @@ namespace Remake___Einsame_Insel
                                         break;
                                     default:
                                         {
-                                            FalscheEingabe();
+                                            if (strEingabe != "z")
+                                            {
+                                                FalscheEingabe();
+                                            }
+                                            
                                         }
                                         break;
                                 }
@@ -154,7 +157,7 @@ namespace Remake___Einsame_Insel
                     // CREDITS
                     case "c":
                         {
-                            Credits(fVersion);
+                            Credits(strVersion);
                             Benutzereingabe();
                         }
                         break;
@@ -191,13 +194,13 @@ namespace Remake___Einsame_Insel
         {
 
             // Villa Menü
-            public static void VillaKaufenMenue(int getHolz, int eisen, int gold, int getGold, int villa, int kostenVillaEisen, int kostenVillaGold, int addVillaHolz, int addVillaGold)
+            public static void VillaKaufenMenue(int kostenVillaEisen, int kostenVillaGold, int addVillaHolz, int addVillaGold)
             {
                 string resVorhanden = VillaMenue(kostenVillaEisen, kostenVillaGold, addVillaHolz, addVillaGold);
                 if (resVorhanden == "y")
                 {
                     // Villa kaufen ja nein?
-                    VillaKaufenAbfrage(getHolz, eisen, gold, getGold, villa, kostenVillaEisen, kostenVillaGold, addVillaHolz, addVillaGold);
+                    VillaKaufenAbfrage(kostenVillaEisen, kostenVillaGold, addVillaHolz, addVillaGold);
                 }
                 // Villa kaufen abbruch
                 if (resVorhanden == "n")
@@ -206,7 +209,7 @@ namespace Remake___Einsame_Insel
                 }
             }
             // Villa kaufen ja nein mit Berechnung
-            static void VillaKaufenAbfrage(int getHolz, int eisen, int gold, int getGold, int villa, int kostenVillaEisen, int kostenVillaGold, int addVillaHolz, int addVillaGold)
+            static void VillaKaufenAbfrage(int kostenVillaEisen, int kostenVillaGold, int addVillaHolz, int addVillaGold)
             {
                 if (eisen >= kostenVillaEisen && gold >= kostenVillaGold)
                 {
@@ -227,14 +230,14 @@ namespace Remake___Einsame_Insel
         class Haus
         {
             // Haus Menü
-            static public void HausKaufenMenue(int holz, int getEisen, int gold, int getGold, int haus, int kostenHausHolz, int kostenHausGold, int addHausEisen, int addHausGold)
+            static public void HausKaufenMenue(int kostenHausHolz, int kostenHausGold, int addHausEisen, int addHausGold)
             {
                 string resVorhanden = HausMenue(kostenHausHolz, kostenHausGold, addHausEisen, addHausGold);
 
                 if (resVorhanden == "y")
                 {
                     // Haus kaufen ja nein?
-                    HausKaufenAbfrage(holz, getEisen, gold, getGold, haus, kostenHausHolz, kostenHausGold, addHausEisen, addHausGold);
+                    HausKaufenAbfrage(kostenHausHolz, kostenHausGold, addHausEisen, addHausGold);
                 }
                 // Haus kaufen Abbruch
                 if (resVorhanden == "n")
@@ -244,7 +247,7 @@ namespace Remake___Einsame_Insel
             }
 
             // Haus kaufen ja nein mit Berechnung
-            static void HausKaufenAbfrage(int holz, int getEisen, int gold, int getGold, int haus, int kostenHausHolz, int kostenHausGold, int addHausEisen, int addHausGold)
+            static void HausKaufenAbfrage(int kostenHausHolz, int kostenHausGold, int addHausEisen, int addHausGold)
             {
                 if (holz >= kostenHausHolz && gold >= kostenHausGold)
                 {
@@ -264,9 +267,9 @@ namespace Remake___Einsame_Insel
         }
         // METHODEN
         // Hauptmenü Überschrifft
-        static void HauptUeberschrift(float version)
+        static void HauptUeberschrift(string version)
         {
-            Console.WriteLine($"Version:  {version}");
+            Console.WriteLine($"Version: {version}");
             MenueBuilder("Willkommen auf der einsamen Insel");
         }
 
@@ -281,7 +284,7 @@ namespace Remake___Einsame_Insel
         }
 
         // Credits Beschreibung
-        static void Credits(float version)
+        static void Credits(string version)
         {
 
             ArrayList entries = new ArrayList();
