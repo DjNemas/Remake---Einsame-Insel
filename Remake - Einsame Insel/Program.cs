@@ -84,8 +84,8 @@ namespace Remake___Einsame_Insel
             } while (strEingabe != "b");
 
             // Debug/Test ausgabe
-            Console.WriteLine("test");
-            Console.ReadKey();
+            //Console.WriteLine("test");
+            //Console.ReadKey();
 
             // Methoden
 
