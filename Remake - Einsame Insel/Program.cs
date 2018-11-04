@@ -11,7 +11,7 @@ namespace Remake___Einsame_Insel
         static void Main(string[] args)
         {
             // Version
-            float fVersion = 0.5f;
+            float fVersion = 0.6f;
 
             // Variablen
             string strEingabe;
