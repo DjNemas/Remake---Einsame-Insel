@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -282,11 +283,16 @@ namespace Remake___Einsame_Insel
         // Credits Beschreibung
         static void Credits(float version)
         {
-            Console.WriteLine("-----------------------------------------------");
-            Console.WriteLine("Remake - Einsame Insel Version " + version);
-            Console.WriteLine("Concept, Development, Design by Denis Kliem\n\n");
-            Console.WriteLine("Copyright 2018 by Denis Kliem");
-            Console.WriteLine("-----------------------------------------------");
+
+            ArrayList entries = new ArrayList();
+            entries.Add("Remake - Einsame Insel Version " + version);
+            entries.Add("Concept, Development, Design by Denis Kliem");
+            entries.Add("\n\n");
+            entries.Add("Copyright 2018 by Denis Kliem");
+
+            MenueBuilder(entries);            
+
+
         }
 
         // Für die Level Info Beschreibung
@@ -372,6 +378,28 @@ namespace Remake___Einsame_Insel
 
 
         }
+        static void MenueBuilder(ArrayList arrayList)
+        {
+            
+            int maxAmountOfCharacter = 0;
+
+            foreach (String s in arrayList)
+            {
+                if (s.Length > maxAmountOfCharacter)
+                {
+                    maxAmountOfCharacter = s.Length;
+                }
+
+            }
+            MenueBuilderLine(maxAmountOfCharacter, "-");
+
+            foreach (String s in arrayList)
+            {
+                Console.WriteLine(s);
+            }
+            MenueBuilderLine(maxAmountOfCharacter, "-");
+        }
+
 
         static void MenueBuilderLine(int length, String character)
         {
