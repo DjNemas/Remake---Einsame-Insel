@@ -10,6 +10,10 @@ Geplante Updates:
 ----------------------------------------------------
 [Grundgerüst wird in Alpha gebaut]
 
+Alpha Version 0.7
+- Limits für Ressourcen und Gebäude hinzugefügt.
+- Unnötige variabel Deklarationen entfernt.  
+
 Alpha Version 0.65
 - Bugfix: Gebäude können wieder gekauft werden und Berechnungen gehen       wieder. (Variablen außerhalb der Main verfügbar gemacht)
 - Versions Variable von int auf string geändert.
