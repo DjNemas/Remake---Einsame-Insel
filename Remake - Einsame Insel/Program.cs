@@ -70,35 +70,7 @@ namespace Remake___Einsame_Insel
                         {
                             if (neuesLevel == 1)
                             {
-                                // Ressourcen nicht nochmal neu setzen
-                                neuesLevel = 2;
-
-                                // Ressourcen festlegen
-                                holz = 100;
-                                getHolz = 50;
-                                eisen = 100;
-                                getEisen = 25;
-                                gold = 1000;
-                                getGold = 100;
-                                haus = 0;
-                                villa = 0;
-                                // Gebäude kosten und Rohstoffe addition
-                                kostenHausHolz = 300;
-                                kostenHausGold = 1500;
-                                addHausEisen = 25;
-                                addHausGold = 50;
-                                kostenVillaEisen = 200;
-                                kostenVillaGold = 2000;
-                                addVillaHolz = 20;
-                                addVillaGold = 150;
-                                // Limits werden gesetzt
-                                holzLimit = 900;
-                                eisenLimit = 600;
-                                goldLimit = 10500;
-                                hausLimit = 3;
-                                villaLimit = 3;
-                                hausLimitAdd = 3;
-                                villaLimitAdd = 3;
+                                setLevelVariablen(100, 50, 100, 25, 1000, 100, 0, 0, 300, 1500, 25, 50, 200, 2000, 20, 150, 900, 600, 10500, 3, 3, 3, 3);
                             }
                             do
                             {
@@ -198,6 +170,44 @@ namespace Remake___Einsame_Insel
             } while (strEingabe != "b");
         }
 
+        // Variablen für Level Leicht setzen
+        private static void setLevelVariablen(int setHolz, int setGetHolz, int setEisen, int setGetEisen, int setGold, int setGetGold, int setHaus, int setVilla,
+            int setKostenHausHolz, int setKostenHausGold, int setAddHausEisen, int setAddHausGold, int setKostenVillaEisen, int setKostenVillaGold,
+            int setAddVillaHolz, int setAddVillaGold, int setHolzLimit, int setEisenLimit, int setGoldLimit, int setHausLimit, int setVillaLimit,
+            int setHausLimitAdd, int setVillaLimitAdd)
+        {
+            // Ressourcen nicht nochmal neu setzen
+            neuesLevel = 2;
+
+            // Ressourcen festlegen
+            holz = setHolz;
+            getHolz = setGetHolz;
+            eisen = setEisen;
+            getEisen = setGetEisen;
+            gold = setGold;
+            getGold = setGetGold;
+            haus = setHaus;
+            villa = setVilla;
+            // Gebäude kosten und Rohstoffe addition
+            kostenHausHolz = setKostenHausHolz;
+            kostenHausGold = setKostenHausGold;
+            addHausEisen = setAddHausEisen;
+            addHausGold = setAddHausGold;
+            kostenVillaEisen = setKostenVillaEisen;
+            kostenVillaGold = setKostenVillaGold;
+            addVillaHolz = setAddVillaHolz;
+            addVillaGold = setAddVillaGold;
+            // Limits werden gesetzt
+            holzLimit = setHolzLimit;
+            eisenLimit = setEisenLimit;
+            goldLimit = setGoldLimit;
+            hausLimit = setHausLimit;
+            villaLimit = setVillaLimit;
+            hausLimitAdd = setHausLimitAdd;
+            villaLimitAdd = setVillaLimitAdd;
+        }
+
+        // Abbau Berechnung
         static int resAbbauen(int res, int resLimit, int getRes)
         {
             if (res <= resLimit)
@@ -297,6 +307,7 @@ namespace Remake___Einsame_Insel
             }
 
         }
+        
         // METHODEN
         // Hauptmenü Überschrifft
         static void HauptUeberschrift(string version)
