@@ -12,43 +12,48 @@ namespace Remake___Einsame_Insel
         // Level Variablen
         static int neuesLevel = 1;
 
+        /*
         // Ressourcen
-        static int holz = 0;
-        static int getHolz = 0;
-        static int eisen = 0;
-        static int getEisen = 0;
-        static int gold = 0;
-        static int getGold = 0;
-        static int haus = 0;
-        static int villa = 0;
+        static int holz;
+        static int getHolz;
+        static int eisen;
+        static int getEisen;
+        static int gold;
+        static int getGold;
+        static int haus;
+        static int villa;
+        
 
         // Gebäude
-        static int kostenHausHolz = 0;
-        static int kostenHausGold = 0;
-        static int addHausEisen = 0;
-        static int addHausGold = 0;
-        static int kostenVillaEisen = 0;
-        static int kostenVillaGold = 0;
-        static int addVillaHolz = 0;
-        static int addVillaGold = 0;
+        static int kostenHausHolz;
+        static int kostenHausGold;
+        static int addHausEisen;
+        static int addHausGold;
+        static int kostenVillaEisen;
+        static int kostenVillaGold;
+        static int addVillaHolz;
+        static int addVillaGold;
 
         // Limits
-        static int holzLimit = 0;
-        static int eisenLimit = 0;
-        static int goldLimit = 0;
-        static int hausLimit = 0;
-        static int villaLimit = 0;
-        static int hausLimitAdd = 0;
-        static int villaLimitAdd = 0;
+        static int holzLimit;
+        static int eisenLimit;
+        static int goldLimit;
+        static int hausLimit;
+        static int villaLimit;
+        static int hausLimitAdd;
+        static int villaLimitAdd;
+        */
 
         static void Main(string[] args)
         {
+            Ressource res = new Ressource();
+            Buildings building = new Buildings();
             // Version
             string strVersion = "Alpha 0.65";
 
             // Variablen
             string strEingabe;
-            
+
             // Hauptmenü Überschrift
             HauptUeberschrift(strVersion);
 
@@ -70,39 +75,39 @@ namespace Remake___Einsame_Insel
                         {
                             if (neuesLevel == 1)
                             {
-                                setLevelVariablen(100, 50, 100, 25, 1000, 100, 0, 0, 300, 1500, 25, 50, 200, 2000, 20, 150, 900, 600, 10500, 3, 3, 3, 3);
+                                setLevelVariablen(100, 50, 100, 25, 1000, 100, 0, 0, 300, 1500, 25, 50, 200, 2000, 20, 150, 900, 600, 10500, 3, 3, 3, 3, res, building);
                             }
                             do
                             {
-                                ResMenue();
+                                ResMenue(res, building);
                                 strEingabe = SpielerBenutzereingabeMenü();
                                 Console.Clear();
-                                
+
                                 switch (strEingabe)
-                                { 
+                                {
                                     case "h":
                                         {
-                                            holz = resAbbauen(holz, holzLimit, getHolz);
+                                            res.Holz = resAbbauen(res.Holz, res.HolzLimit, res.GetHolz);
                                         }
                                         break;
                                     case "e":
                                         {
-                                            eisen = resAbbauen(eisen, eisenLimit, getEisen);
+                                            res.Eisen = resAbbauen(res.Eisen, res.EisenLimit, res.GetEisen);
                                         }
                                         break;
                                     case "g":
                                         {
-                                            gold = resAbbauen(gold, goldLimit, getGold);
+                                            res.Gold = resAbbauen(res.Gold, res.GoldLimit, res.GetGold);
                                         }
                                         break;
                                     case "a":
                                         {
-                                            Haus.HausKaufenMenue();
+                                            HausKaufenMenue(res, building);
                                         }
                                         break;
                                     case "v":
                                         {
-                                            Villa.VillaKaufenMenue();
+                                            VillaKaufenMenue(res, building);
                                         }
                                         break;
                                     case "b":
@@ -116,7 +121,7 @@ namespace Remake___Einsame_Insel
                                             {
                                                 FalscheEingabe();
                                             }
-                                            
+
                                         }
                                         break;
                                 }
@@ -171,40 +176,41 @@ namespace Remake___Einsame_Insel
         }
 
         // Variablen für Level Leicht setzen
-        private static void setLevelVariablen(int setHolz, int setGetHolz, int setEisen, int setGetEisen, int setGold, int setGetGold, int setHaus, int setVilla,
+        static void setLevelVariablen(int setHolz, int setGetHolz, int setEisen, int setGetEisen, int setGold, int setGetGold, int setHaus, int setVilla,
             int setKostenHausHolz, int setKostenHausGold, int setAddHausEisen, int setAddHausGold, int setKostenVillaEisen, int setKostenVillaGold,
             int setAddVillaHolz, int setAddVillaGold, int setHolzLimit, int setEisenLimit, int setGoldLimit, int setHausLimit, int setVillaLimit,
-            int setHausLimitAdd, int setVillaLimitAdd)
+            int setHausLimitAdd, int setVillaLimitAdd, Ressource res, Buildings building)
         {
+
             // Ressourcen nicht nochmal neu setzen
             neuesLevel = 2;
 
             // Ressourcen festlegen
-            holz = setHolz;
-            getHolz = setGetHolz;
-            eisen = setEisen;
-            getEisen = setGetEisen;
-            gold = setGold;
-            getGold = setGetGold;
-            haus = setHaus;
-            villa = setVilla;
+            res.Holz = setHolz;
+            res.GetHolz = setGetHolz;
+            res.Eisen = setEisen;
+            res.GetEisen = setGetEisen;
+            res.Gold = setGold;
+            res.GetGold = setGetGold;
+            building.Haus = setHaus;
+            building.Villa = setVilla;
             // Gebäude kosten und Rohstoffe addition
-            kostenHausHolz = setKostenHausHolz;
-            kostenHausGold = setKostenHausGold;
-            addHausEisen = setAddHausEisen;
-            addHausGold = setAddHausGold;
-            kostenVillaEisen = setKostenVillaEisen;
-            kostenVillaGold = setKostenVillaGold;
-            addVillaHolz = setAddVillaHolz;
-            addVillaGold = setAddVillaGold;
+            building.KostenHausHolz = setKostenHausHolz;
+            building.KostenHausGold = setKostenHausGold;
+            res.AddHausEisen = setAddHausEisen;
+            res.AddHausGold = setAddHausGold;
+            building.KostenVillaEisen = setKostenVillaEisen;
+            building.KostenVillaGold = setKostenVillaGold;
+            res.AddVillaHolz = setAddVillaHolz;
+            res.AddVillaGold = setAddVillaGold;
             // Limits werden gesetzt
-            holzLimit = setHolzLimit;
-            eisenLimit = setEisenLimit;
-            goldLimit = setGoldLimit;
-            hausLimit = setHausLimit;
-            villaLimit = setVillaLimit;
-            hausLimitAdd = setHausLimitAdd;
-            villaLimitAdd = setVillaLimitAdd;
+            res.HolzLimit = setHolzLimit;
+            res.EisenLimit = setEisenLimit;
+            res.GoldLimit = setGoldLimit;
+            building.HausLimit = setHausLimit;
+            building.VillaLimit = setVillaLimit;
+            building.HausLimitAdd = setHausLimitAdd;
+            building.VillaLimitAdd = setVillaLimitAdd;
         }
 
         // Abbau Berechnung
@@ -231,83 +237,80 @@ namespace Remake___Einsame_Insel
             Console.WriteLine("Falsche Eingabe!\nBitte erneut versuchen.");
         }
 
-        class Villa
+
+        // Villa Menü
+        public static void VillaKaufenMenue(Ressource res, Buildings building)
         {
-
-            // Villa Menü
-            public static void VillaKaufenMenue()
+            string resVorhanden = VillaMenue(res, building);
+            if (resVorhanden == "y")
             {
-                string resVorhanden = VillaMenue();
-                if (resVorhanden == "y")
-                {
-                    // Villa kaufen ja nein?
-                    VillaKaufenAbfrage();
-                }
-                // Villa kaufen abbruch
-                if (resVorhanden == "n")
-                {
-                    Console.WriteLine("Du bist wieder im Spielmenü");
-                }
+                // Villa kaufen ja nein?
+                VillaKaufenAbfrage(res, building);
             }
-            // Villa kaufen ja nein mit Berechnung
-            static void VillaKaufenAbfrage()
+            // Villa kaufen abbruch
+            if (resVorhanden == "n")
             {
-                if (eisen >= kostenVillaEisen && gold >= kostenVillaGold)
-                {
-                    villa++;
-                    eisen -= kostenVillaEisen;
-                    gold -= kostenVillaGold;
-                    getHolz += addVillaHolz;
-                    getGold += addVillaGold;
-                    Console.WriteLine("Du hast eine Villa gekauft!");
-                }
-                else
-                {
-                    Console.WriteLine("Du hast nicht genug Ressourcen");
-                }
+                Console.WriteLine("Du bist wieder im Spielmenü");
             }
-
         }
-        class Haus
+        // Villa kaufen ja nein mit Berechnung
+        static void VillaKaufenAbfrage(Ressource res, Buildings building)
         {
-            // Haus Menü
-            static public void HausKaufenMenue()
+            if (res.Eisen >= building.KostenVillaEisen && res.Gold >= building.KostenVillaGold)
             {
-                string resVorhanden = HausMenue();
-
-                if (resVorhanden == "y")
-                {
-                    // Haus kaufen ja nein?
-                    HausKaufenAbfrage();
-                }
-                // Haus kaufen Abbruch
-                if (resVorhanden == "n")
-                {
-                    Console.WriteLine("Du bist wieder im Spielmenü");
-                }
+                building.Villa++;
+                res.Eisen -= building.KostenVillaEisen;
+                res.Gold -= building.KostenVillaGold;
+                res.GetHolz += res.AddVillaHolz;
+                res.GetGold += res.AddVillaGold;
+                Console.WriteLine("Du hast eine Villa gekauft!");
             }
-
-            // Haus kaufen ja nein mit Berechnung
-            static void HausKaufenAbfrage()
+            else
             {
-                if (holz >= kostenHausHolz && gold >= kostenHausGold)
-                {
-                    haus++;
-                    holz -= kostenHausHolz;
-                    gold -= kostenHausGold;
-                    getEisen += addHausEisen;
-                    getGold += addHausGold;
-                    villaLimit += villaLimitAdd;
-                    Console.WriteLine("Du hast ein Haus gekauft!");
-                }
-                else
-                {
-                    Console.WriteLine("Du hast nicht genug Ressourcen");
-                }
+                Console.WriteLine("Du hast nicht genug Ressourcen");
             }
-
         }
-        
+
+
+
+        // Haus Menü
+        static public void HausKaufenMenue(Ressource res, Buildings building)
+        {
+            string resVorhanden = HausMenue(res, building);
+
+            if (resVorhanden == "y")
+            {
+                // Haus kaufen ja nein?
+                HausKaufenAbfrage(res, building);
+            }
+            // Haus kaufen Abbruch
+            if (resVorhanden == "n")
+            {
+                Console.WriteLine("Du bist wieder im Spielmenü");
+            }
+        }
+
+        // Haus kaufen ja nein mit Berechnung
+        static void HausKaufenAbfrage(Ressource res, Buildings building)
+        {
+            if (res.Holz >= building.KostenHausHolz && res.Gold >= building.KostenHausGold)
+            {
+                building.Haus++;
+                res.Holz -= building.KostenHausHolz;
+                res.Gold -= building.KostenHausGold;
+                res.GetEisen += res.AddHausEisen;
+                res.GetGold += res.AddHausGold;
+                building.VillaLimit += building.VillaLimitAdd;
+                Console.WriteLine("Du hast ein Haus gekauft!");
+            }
+            else
+            {
+                Console.WriteLine("Du hast nicht genug Ressourcen");
+            }
+        }
+
+
+
         // METHODEN
         // Hauptmenü Überschrifft
         static void HauptUeberschrift(string version)
@@ -336,7 +339,7 @@ namespace Remake___Einsame_Insel
             entries.Add("\n\n");
             entries.Add("Copyright 2018 by Denis Kliem");
 
-            MenueBuilder(entries);            
+            MenueBuilder(entries);
 
 
         }
@@ -360,15 +363,15 @@ namespace Remake___Einsame_Insel
 
         // SPIELMENÜ
         // Ressourcen Menü
-        static void ResMenue()
+        static void ResMenue(Ressource res, Buildings building)
         {
             MenueBuilder("Menü");
             Console.WriteLine("Momentan hast du:");
-            Console.WriteLine($"Holz: {holz}/{holzLimit}\t\t Du bekommst pro Abbau:\t {getHolz} Holz");
-            Console.WriteLine($"Eisen: {eisen}/{eisenLimit}\t\t Du bekommst pro Abbau:\t {getEisen} Holz");
-            Console.WriteLine($"Gold: {gold}/{goldLimit}    \t Du bekommst pro Abbau:\t {getGold} Holz");
-            Console.WriteLine($"Häuser: {haus}/{hausLimit}");
-            Console.WriteLine($"Villen: {villa}/{villaLimit}");
+            Console.WriteLine($"Holz: {res.Holz}/{res.HolzLimit}\t\t Du bekommst pro Abbau:\t {res.GetHolz} Holz");
+            Console.WriteLine($"Eisen: {res.Eisen}/{res.EisenLimit}\t\t Du bekommst pro Abbau:\t {res.GetEisen} Holz");
+            Console.WriteLine($"Gold: {res.Gold}/{res.GoldLimit}    \t Du bekommst pro Abbau:\t {res.GetGold} Holz");
+            Console.WriteLine($"Häuser: {building.Haus}/{building.HausLimit}");
+            Console.WriteLine($"Villen: {building.Villa}/{building.VillaLimit}");
         }
 
         // Spieler Benutzereingabe Menü
@@ -384,14 +387,14 @@ namespace Remake___Einsame_Insel
 
         // GEBÄUDE MENÜ
         // Haus kaufen
-        static string HausMenue()
+        static string HausMenue(Ressource res, Buildings building)
         {
             MenueBuilder("Hier kannst du ein Haus kaufen");
             Console.WriteLine("Ein Haus kostet:");
-            Console.WriteLine($"{kostenHausHolz} Holz");
-            Console.WriteLine($"{kostenHausGold} Gold\n");
-            Console.WriteLine($"Pro Haus bekommst du beim abbauen von Eisen {addHausEisen} und von Gold {addHausGold} mehr!");
-            Console.WriteLine($"Ausserdem steigt dein Limit der Villen um {villaLimitAdd}");
+            Console.WriteLine($"{building.KostenHausHolz} Holz");
+            Console.WriteLine($"{building.KostenHausGold} Gold\n");
+            Console.WriteLine($"Pro Haus bekommst du beim abbauen von Eisen {res.AddHausEisen} und von Gold {res.AddHausGold} mehr!");
+            Console.WriteLine($"Ausserdem steigt dein Limit der Villen um {building.VillaLimitAdd}");
             Console.WriteLine("Haus jetzt kaufen? (Y/N)");
 
             string strEingabe = Console.ReadKey().KeyChar.ToString().ToLower();
@@ -400,13 +403,13 @@ namespace Remake___Einsame_Insel
         }
 
         // Villa kaufen
-        static string VillaMenue()
+        static string VillaMenue(Ressource res, Buildings building)
         {
             MenueBuilder("Hier kannst du eine Villa kaufen");
             Console.WriteLine("Eine Villa kostet:");
-            Console.WriteLine($"{kostenVillaEisen} Eisen");
-            Console.WriteLine($"{kostenVillaGold} Gold\n");
-            Console.WriteLine($"Pro Villa bekommst du beim abbauen von Holz {addVillaHolz} und von Gold {addVillaGold} mehr!");
+            Console.WriteLine($"{building.KostenVillaEisen} Eisen");
+            Console.WriteLine($"{building.KostenVillaGold} Gold\n");
+            Console.WriteLine($"Pro Villa bekommst du beim abbauen von Holz {res.AddVillaHolz} und von Gold {res.AddVillaGold} mehr!");
             Console.WriteLine("Villa jetzt kaufen? (Y/N)");
 
             string strEingabe = Console.ReadKey().KeyChar.ToString().ToLower();
@@ -427,7 +430,7 @@ namespace Remake___Einsame_Insel
         }
         static void MenueBuilder(ArrayList arrayList)
         {
-            
+
             int maxAmountOfCharacter = 0;
 
             foreach (String s in arrayList)
