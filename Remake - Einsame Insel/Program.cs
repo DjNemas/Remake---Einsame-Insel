@@ -14,7 +14,7 @@ namespace Remake___Einsame_Insel
 
         static void Main(string[] args)
         {
-            // Variablen festlegen
+            // Erstelle obj für Menütexte
             Resource res = new Resource();
             Buildings building = new Buildings();
 
@@ -50,12 +50,14 @@ namespace Remake___Einsame_Insel
                     // LEICHTES LEVEL
                     case "l":
                         {
+                            
                             if (neuesLevel == 1)
                             {
                                 // Ressourcen und Gebäude Speichern
                                 neuesLevel = 2;
-                                // Starte Level Leicht
-                                StartLevel levelLeicht = new StartLevel(100, 50, 100, 25, 1000, 100, 0, 0, 300, 1500, 25, 50, 200, 2000, 20, 150, 900, 600, 10500, 3, 3, 3, 3, res, building);
+                                // Starte Level Leicht                                
+                                res = new Resource(100, 100, 1000, 25, 50, 100, 25, 50, 20, 150, 900, 600, 10500);
+                                building = new Buildings(0,0,300,1500,200,2000,3,3);
                             }
                             do
                             {                                

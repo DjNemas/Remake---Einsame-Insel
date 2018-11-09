@@ -33,19 +33,25 @@ namespace Remake___Einsame_Insel
 
         public Resource()
         {
-            this.Holz = 0;
-            this.Eisen = 0;
-            this.Gold = 0;
-            this.GetEisen = 0;
-            this.GetHolz = 0;
-            this.GetGold = 0;
-            this.AddHausEisen = 0;
-            this.AddHausGold = 0;
-            this.AddVillaHolz = 0;
-            this.AddVillaGold = 0;
-            this.HolzLimit = 0;
-            this.EisenLimit = 0;
-            this.GoldLimit = 0;
+            // Default
+        }
+
+        public Resource(int holz, int eisen, int gold, int getEisen, int getHolz,int getGold, int addHausEisen, int addHausGold,
+                        int addVillaHolz, int addVillaGold, int holzLimit, int eisenLimit, int goldLimit)
+        {
+            this.Holz = holz;
+            this.Eisen = eisen;
+            this.Gold = gold;
+            this.GetEisen = getEisen;
+            this.GetHolz = getHolz;
+            this.GetGold = getGold;
+            this.AddHausEisen = addHausEisen;
+            this.AddHausGold = addHausGold;
+            this.AddVillaHolz = addVillaHolz;
+            this.AddVillaGold = addVillaGold;
+            this.HolzLimit = holzLimit;
+            this.EisenLimit = eisenLimit;
+            this.GoldLimit = goldLimit;
         }
 
     }

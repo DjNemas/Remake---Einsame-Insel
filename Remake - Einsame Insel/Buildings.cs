@@ -22,9 +22,28 @@ namespace Remake___Einsame_Insel
         // Limits
         public int HausLimit { get; set; }
         public int VillaLimit { get; set; }
-        public int HausLimitAdd { get; set; }
-        public int VillaLimitAdd { get; set; }
+        public int HausLimitAdd { get; }
+        public int VillaLimitAdd { get; }
 
+        public Buildings()
+        {
+            // Default
+        }
+
+        public Buildings(int haus, int villa, int kostenHausHolz, int kostenHausGold, int kostenVillaEisen,
+                         int kostenVillaGold, int hausLimit, int villaLimit)
+        {
+            this.Haus = haus;
+            this.Villa = villa;
+            this.KostenHausHolz = kostenHausHolz;
+            this.KostenHausGold = kostenHausGold;
+            this.KostenVillaEisen = kostenVillaEisen;
+            this.KostenVillaGold = kostenVillaGold;
+            this.HausLimit = hausLimit;
+            this.VillaLimit = villaLimit;
+            this.HausLimitAdd = 3;
+            this.VillaLimitAdd = 3;
+        }
 
     }
 }
