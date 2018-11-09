@@ -12,44 +12,13 @@ namespace Remake___Einsame_Insel
         // Level Variablen
         static int neuesLevel = 1;
 
-        /*
-        // Ressourcen
-        static int holz;
-        static int getHolz;
-        static int eisen;
-        static int getEisen;
-        static int gold;
-        static int getGold;
-        static int haus;
-        static int villa;
-        
-
-        // Gebäude
-        static int kostenHausHolz;
-        static int kostenHausGold;
-        static int addHausEisen;
-        static int addHausGold;
-        static int kostenVillaEisen;
-        static int kostenVillaGold;
-        static int addVillaHolz;
-        static int addVillaGold;
-
-        // Limits
-        static int holzLimit;
-        static int eisenLimit;
-        static int goldLimit;
-        static int hausLimit;
-        static int villaLimit;
-        static int hausLimitAdd;
-        static int villaLimitAdd;
-        */
-
         static void Main(string[] args)
         {
             Ressource res = new Ressource();
             Buildings building = new Buildings();
+
             // Version
-            string strVersion = "Alpha 0.65";
+            string strVersion = "Alpha 0.7";
 
             // Variablen
             string strEingabe;
@@ -270,8 +239,6 @@ namespace Remake___Einsame_Insel
                 Console.WriteLine("Du hast nicht genug Ressourcen");
             }
         }
-
-
 
         // Haus Menü
         static public void HausKaufenMenue(Ressource res, Buildings building)

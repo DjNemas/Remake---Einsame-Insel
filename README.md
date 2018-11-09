@@ -12,7 +12,8 @@ Geplante Updates:
 
 Alpha Version 0.7
 - Limits für Ressourcen und Gebäude hinzugefügt.
-- Unnötige variabel Deklarationen entfernt.  
+- Unnötige variabel Deklarationen entfernt.
+- Klasse für Ressource und Gebäude erstellt. 
 
 Alpha Version 0.65
 - Bugfix: Gebäude können wieder gekauft werden und Berechnungen gehen       wieder. (Variablen außerhalb der Main verfügbar gemacht)
