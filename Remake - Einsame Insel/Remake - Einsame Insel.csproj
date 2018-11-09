@@ -43,10 +43,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Buildingmenu.cs" />
     <Compile Include="Buildings.cs" />
+    <Compile Include="CalculateResource.cs" />
+    <Compile Include="GamemenuText.cs" />
+    <Compile Include="MainmenuText.cs" />
+    <Compile Include="MenuBuilder.cs" />
+    <Compile Include="OverallText.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Ressource.cs" />
+    <Compile Include="Resource.cs" />
+    <Compile Include="StartLevel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

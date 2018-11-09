@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Remake___Einsame_Insel
 {
-    class Ressource
+    class Resource
     {
         // Main Ressource
         public int Holz { get; set; }
