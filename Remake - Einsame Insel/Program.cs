@@ -35,7 +35,7 @@ namespace Remake___Einsame_Insel
         static void Main(string[] args)
         {
             // Version
-            string strVersion = "Alpha 0.65";
+            string strVersion = "Alpha 0.651";
 
             // Variablen
             string strEingabe;
@@ -291,7 +291,7 @@ namespace Remake___Einsame_Insel
             entries.Add("Remake - Einsame Insel Version " + version);
             entries.Add("Concept, Development, Design by Denis Kliem");
             entries.Add("\n\n");
-            entries.Add("Copyright 2018 by Denis Kliem");
+            entries.Add("Copyright 2018-2020 by Denis Kliem");
 
             MenueBuilder(entries);            
 
