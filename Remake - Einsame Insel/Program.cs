@@ -402,7 +402,7 @@ namespace Remake___Einsame_Insel
 
         private static string EingabeAbfragen()
         {
-            string strEingabe = Console.ReadKey().KeyChar.ToString().ToLower();
+            string strEingabe = EingabeAbfragen();
             return strEingabe;
         }
 
@@ -572,7 +572,7 @@ namespace Remake___Einsame_Insel
             Console.WriteLine($"Pro Haus bekommst du beim abbauen von Eisen {addHausEisen} und von Gold {addHausGold} mehr!");
             Console.WriteLine("Haus jetzt kaufen? (Y/N)");
 
-            string strEingabe = Console.ReadKey().KeyChar.ToString().ToLower();
+            string strEingabe = EingabeAbfragen();
             Console.Clear();
             return strEingabe;
         }
@@ -587,7 +587,7 @@ namespace Remake___Einsame_Insel
             Console.WriteLine($"Pro Villa bekommst du beim abbauen von Holz {addVillaHolz} und von Gold {addVillaGold} mehr!");
             Console.WriteLine("Villa jetzt kaufen? (Y/N)");
 
-            string strEingabe = Console.ReadKey().KeyChar.ToString().ToLower();
+            string strEingabe = EingabeAbfragen();
             Console.Clear();
             return strEingabe;
         }
