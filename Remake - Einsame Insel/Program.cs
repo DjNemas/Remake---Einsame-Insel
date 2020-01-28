@@ -35,7 +35,7 @@ namespace Remake___Einsame_Insel
         static void Main(string[] args)
         {
             // Version
-            string strVersion = "Alpha 0.651";
+            string strVersion = "Alpha 0.7";
 
             // Variablen
             string strEingabe;
@@ -50,7 +50,8 @@ namespace Remake___Einsame_Insel
                 HauptBenutzereingaben();
 
                 // Eingabe abfragen
-                strEingabe = Console.ReadKey().KeyChar.ToString().ToLower();
+                strEingabe = EingabeAbfragen();
+                
 
                 // Menüpunkte
                 Console.Clear();
@@ -59,9 +60,27 @@ namespace Remake___Einsame_Insel
                     // LEICHTES LEVEL
                     case "l":
                         {
+                            if (neuesLevel == 3 || neuesLevel == 4)
+                            {
+                                strEingabe = BeginneNeuesLevel();
+                                if (strEingabe == "y")
+                                {
+                                    neuesLevel = 1;
+                                }
+                                else if (strEingabe == "n")
+                                {
+                                    break;
+                                }
+                                else
+                                {
+                                    FalscheEingabe();
+                                    break;
+                                }
+                            }
+
                             if (neuesLevel == 1)
                             {
-                                // Ressourcen nicht nochmal neu setzen
+                                // Ressourcen nicht noch einmal neu setzen
                                 neuesLevel = 2;
 
                                 // Ressourcen festlegen
@@ -85,6 +104,7 @@ namespace Remake___Einsame_Insel
                             }
                             do
                             {
+                                Console.WriteLine("Level Leicht");
                                 ResMenue(holz, getHolz, eisen, getEisen, gold, getGold, haus, villa);
                                 strEingabe = SpielerBenutzereingabeMenü();
                                 Console.Clear();
@@ -141,17 +161,203 @@ namespace Remake___Einsame_Insel
                     // NORMALES LEVEL
                     case "n":
                         {
-                            // Normales Level
-                            Console.WriteLine("Aktuell nicht verfügbar!");
-                            Benutzereingabe();
+                            if (neuesLevel == 2 || neuesLevel == 4)
+                            {
+                                strEingabe = BeginneNeuesLevel();
+                                if (strEingabe == "y")
+                                {
+                                    neuesLevel = 1;
+                                }
+                                else if (strEingabe == "n")
+                                {
+                                    break;
+                                }
+                                else
+                                {
+                                    FalscheEingabe();
+                                    break;
+                                }
+                            }    
+                                if (neuesLevel == 1)
+                                {
+                                    // Ressourcen nicht noch einmal neu setzen
+                                    neuesLevel = 3;
+
+                                    // Ressourcen festlegen
+                                    holz = 100;
+                                    getHolz = 50;
+                                    eisen = 100;
+                                    getEisen = 25;
+                                    gold = 1000;
+                                    getGold = 100;
+                                    haus = 0;
+                                    villa = 0;
+                                    // Gebäude kosten und Rohstoffe addition
+                                    kostenHausHolz = 600;
+                                    kostenHausGold = 3000;
+                                    addHausEisen = 25;
+                                    addHausGold = 50;
+                                    kostenVillaEisen = 400;
+                                    kostenVillaGold = 4000;
+                                    addVillaHolz = 20;
+                                    addVillaGold = 150;
+                                }
+                                do
+                                {
+                                    Console.WriteLine("Level Normal");
+                                    ResMenue(holz, getHolz, eisen, getEisen, gold, getGold, haus, villa);
+                                    strEingabe = SpielerBenutzereingabeMenü();
+                                    Console.Clear();
+
+                                    switch (strEingabe)
+                                    {
+                                        case "h":
+                                            {
+                                                holz += getHolz;
+                                                Console.WriteLine($"Du hast {getHolz} Holz abgebaut");
+                                            }
+                                            break;
+                                        case "e":
+                                            {
+                                                eisen += getEisen;
+                                                Console.WriteLine($"Du hast {getEisen} Eisen abgebaut");
+                                            }
+                                            break;
+                                        case "g":
+                                            {
+                                                gold += getGold;
+                                                Console.WriteLine($"Du hast {getGold} Gold abgebaut");
+                                            }
+                                            break;
+                                        case "a":
+                                            {
+                                                Haus.HausKaufenMenue(kostenHausHolz, kostenHausGold, addHausEisen, addHausGold);
+                                            }
+                                            break;
+                                        case "v":
+                                            {
+                                                Villa.VillaKaufenMenue(kostenVillaEisen, kostenVillaGold, addVillaHolz, addVillaGold);
+                                            }
+                                            break;
+                                        case "b":
+                                            {
+                                                Environment.Exit(0);
+                                            }
+                                            break;
+                                        default:
+                                            {
+                                                if (strEingabe != "z")
+                                                {
+                                                    FalscheEingabe();
+                                                }
+
+                                            }
+                                            break;
+                                    }
+
+                                } while (strEingabe != "z");
+
                         }
                         break;
                     // SCHWERES LEVEL
                     case "s":
                         {
-                            // Schweres Level
-                            Console.WriteLine("Aktuell nicht verfügbar!");
-                            Benutzereingabe();
+                            if (neuesLevel == 2 || neuesLevel == 3)
+                            {
+                                strEingabe = BeginneNeuesLevel();
+                                if (strEingabe == "y")
+                                {
+                                    neuesLevel = 1;
+                                }
+                                else if (strEingabe == "n")
+                                {
+                                    break;
+                                }
+                                else
+                                {
+                                    FalscheEingabe();
+                                    break;
+                                }
+                            }
+
+                            if (neuesLevel == 1)
+                            {
+                                // Ressourcen nicht noch einmal neu setzen
+                                neuesLevel = 4;
+
+                                // Ressourcen festlegen
+                                holz = 100;
+                                getHolz = 20;
+                                eisen = 100;
+                                getEisen = 15;
+                                gold = 1000;
+                                getGold = 50;
+                                haus = 0;
+                                villa = 0;
+                                // Gebäude kosten und Rohstoffe addition
+                                kostenHausHolz = 900;
+                                kostenHausGold = 4500;
+                                addHausEisen = 10;
+                                addHausGold = 20;
+                                kostenVillaEisen = 600;
+                                kostenVillaGold = 6000;
+                                addVillaHolz = 10;
+                                addVillaGold = 30;
+                            }
+                            do
+                            {
+                                Console.WriteLine("Level Schwer");
+                                ResMenue(holz, getHolz, eisen, getEisen, gold, getGold, haus, villa);
+                                strEingabe = SpielerBenutzereingabeMenü();
+                                Console.Clear();
+
+                                switch (strEingabe)
+                                {
+                                    case "h":
+                                        {
+                                            holz += getHolz;
+                                            Console.WriteLine($"Du hast {getHolz} Holz abgebaut");
+                                        }
+                                        break;
+                                    case "e":
+                                        {
+                                            eisen += getEisen;
+                                            Console.WriteLine($"Du hast {getEisen} Eisen abgebaut");
+                                        }
+                                        break;
+                                    case "g":
+                                        {
+                                            gold += getGold;
+                                            Console.WriteLine($"Du hast {getGold} Gold abgebaut");
+                                        }
+                                        break;
+                                    case "a":
+                                        {
+                                            Haus.HausKaufenMenue(kostenHausHolz, kostenHausGold, addHausEisen, addHausGold);
+                                        }
+                                        break;
+                                    case "v":
+                                        {
+                                            Villa.VillaKaufenMenue(kostenVillaEisen, kostenVillaGold, addVillaHolz, addVillaGold);
+                                        }
+                                        break;
+                                    case "b":
+                                        {
+                                            Environment.Exit(0);
+                                        }
+                                        break;
+                                    default:
+                                        {
+                                            if (strEingabe != "z")
+                                            {
+                                                FalscheEingabe();
+                                            }
+
+                                        }
+                                        break;
+                                }
+
+                            } while (strEingabe != "z");
                         }
                         break;
                     // CREDITS
@@ -171,7 +377,7 @@ namespace Remake___Einsame_Insel
                     // HI I BIMS DER BEENDER
                     case "b":
                         {
-                            //Environment.Exit(0);
+                            Environment.Exit(0);
                         }
                         break;
                     // FALSCHE EINGABE?
@@ -184,10 +390,26 @@ namespace Remake___Einsame_Insel
             } while (strEingabe != "b");
         }
 
+        private static string BeginneNeuesLevel()
+        {
+            MenueBuilder("!!!ACHTUNG!!!");
+            Console.WriteLine("Du befindest dich bereits in einem Spiel! Wenn du jetzt dein Level wechselst, geht dein Fortschritt verloren!");
+            Console.WriteLine("Wenn du wirklich ein neues Level beginnen willst, kannst du mit (Y) fortfahren. Mit (N) kommst du zum Hauptmenü zurück.");
+            string strEingabe = EingabeAbfragen();
+            Console.Clear();
+            return strEingabe;
+        }
+
+        private static string EingabeAbfragen()
+        {
+            string strEingabe = Console.ReadKey().KeyChar.ToString().ToLower();
+            return strEingabe;
+        }
+
         // Falsche Eingabe
         static void FalscheEingabe()
         {
-            Console.WriteLine("Falsche Eingabe!\nBitte erneut versuchen.");
+            Console.WriteLine("Falsche Eingabe!\nBitte erneut versuchen.\n");
         }
 
         class Villa
@@ -290,7 +512,7 @@ namespace Remake___Einsame_Insel
             ArrayList entries = new ArrayList();
             entries.Add("Remake - Einsame Insel Version " + version);
             entries.Add("Concept, Development, Design by Denis Kliem");
-            entries.Add("\n\n");
+            entries.Add("\nFeedback an denis_kliem@yahoo.de\n");
             entries.Add("Copyright 2018-2020 by Denis Kliem");
 
             MenueBuilder(entries);            
@@ -335,7 +557,7 @@ namespace Remake___Einsame_Insel
             Console.WriteLine("Ressourcen:\t Holz abbauen (H), Eisen abbauen (E), Gold Sammeln (G)");
             Console.WriteLine("Gebäude:\t Haus Kaufen (A), Villa kaufen(V)");
             Console.WriteLine("\t\t Zurück ins Hauptmenü (Z), Spiel Beenden (B)");
-            string strEingabe = Console.ReadKey().KeyChar.ToString().ToLower();
+            string strEingabe = EingabeAbfragen();
             return strEingabe;
         }
 
