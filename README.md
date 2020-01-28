@@ -19,6 +19,10 @@ Alpha Version 0.7
 - Wenn man von ein ins andere Level wechseln möchte, wird eine Warnung ausgegeben, die davor warnt, dass man beim Level wechsel sein   	Spielstand verliert.
 - Darstellungs Optimierung.
 
+Alpha Version 0.651
+- Copyright erneuert
+- Feedback E-Mail in Credits hinzugefügt
+
 Alpha Version 0.65
 - Bugfix: Gebäude können wieder gekauft werden und Berechnungen gehen wieder. (Variablen außerhalb der Main verfügbar gemacht)
 - Versions Variable von int auf string geändert.
