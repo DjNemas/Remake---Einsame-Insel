@@ -117,10 +117,10 @@ namespace Remake___Einsame_Insel
 
                                 //Res Limit setzen
                                 holzLimit = 500;
-                                holzLimitPruefung = holzLimit - getHolz;
                                 eisenLimit = 300;
-                                eisenLimitPruefung = eisenLimit - getEisen;
                                 goldLimit = 5000;
+                                holzLimitPruefung = holzLimit - getHolz;
+                                eisenLimitPruefung = eisenLimit - getEisen;
                                 goldLimitPruefung = goldLimit - getGold;
                             }
                             do
@@ -227,6 +227,9 @@ namespace Remake___Einsame_Insel
                                     holzLimit = 10000;
                                     eisenLimit = 10000;
                                     goldLimit = 10000;
+                                    holzLimitPruefung = holzLimit - getHolz;
+                                    eisenLimitPruefung = eisenLimit - getEisen;
+                                    goldLimitPruefung = goldLimit - getGold;
 
                             }
                                 do
@@ -240,19 +243,19 @@ namespace Remake___Einsame_Insel
                                     {
                                         case "h":
                                             {
-                                                holz += getHolz;
+                                                HolzLimitPruefung();
                                                 Console.WriteLine($"Du hast {getHolz} Holz abgebaut");
                                             }
                                             break;
                                         case "e":
                                             {
-                                                eisen += getEisen;
+                                                EisenLimitPruefung();
                                                 Console.WriteLine($"Du hast {getEisen} Eisen abgebaut");
                                             }
                                             break;
                                         case "g":
                                             {
-                                                gold += getGold;
+                                                GoldLimitPruefung();
                                                 Console.WriteLine($"Du hast {getGold} Gold abgebaut");
                                             }
                                             break;
@@ -335,6 +338,9 @@ namespace Remake___Einsame_Insel
                                 holzLimit = 10000;
                                 eisenLimit = 10000;
                                 goldLimit = 10000;
+                                holzLimitPruefung = holzLimit - getHolz;
+                                eisenLimitPruefung = eisenLimit - getEisen;
+                                goldLimitPruefung = goldLimit - getGold;
                             }
                             do
                             {
@@ -347,19 +353,19 @@ namespace Remake___Einsame_Insel
                                 {
                                     case "h":
                                         {
-                                            holz += getHolz;
+                                            HolzLimitPruefung();
                                             Console.WriteLine($"Du hast {getHolz} Holz abgebaut");
                                         }
                                         break;
                                     case "e":
                                         {
-                                            eisen += getEisen;
+                                            EisenLimitPruefung();
                                             Console.WriteLine($"Du hast {getEisen} Eisen abgebaut");
                                         }
                                         break;
                                     case "g":
                                         {
-                                            gold += getGold;
+                                            GoldLimitPruefung();
                                             Console.WriteLine($"Du hast {getGold} Gold abgebaut");
                                         }
                                         break;
@@ -433,6 +439,10 @@ namespace Remake___Einsame_Insel
             {
                 holz = holzLimit;
             }
+            else if (holz <= 0)
+            {
+                holz = 0;
+            }
             else
             {
                 holz += getHolz;
@@ -450,6 +460,10 @@ namespace Remake___Einsame_Insel
             {
                 eisen = eisenLimit;
             }
+            else if (eisen <= 0)
+            {
+                eisen = 0;
+            }
             else
             {
                 eisen += getEisen;
@@ -466,6 +480,10 @@ namespace Remake___Einsame_Insel
             else if (goldLimitPruefung <= gold)
             {
                 gold = goldLimit;
+            }
+            else if (gold <= 0)
+            {
+                gold = 0;
             }
             else
             {
