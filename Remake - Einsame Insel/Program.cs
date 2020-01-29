@@ -42,6 +42,9 @@ namespace Remake___Einsame_Insel
 
         // Zusatzgebäude
         static int lagerHaus;
+        static int kostenLagerhausHolz;
+        static int kostenLagerhausEisen;
+        static int kostenLagerhausGold;
         
 
         static void Main(string[] args)
@@ -160,6 +163,11 @@ namespace Remake___Einsame_Insel
                                             Villa.VillaKaufenMenue(kostenVillaEisen, kostenVillaGold, addVillaHolz, addVillaGold);
                                         }
                                         break;
+                                        /*case "l";
+                                        {
+
+                                        }
+                                        break;*/
                                     case "b":
                                         {
                                             Environment.Exit(0);
@@ -513,6 +521,14 @@ namespace Remake___Einsame_Insel
             Console.WriteLine("Falsche Eingabe!\nBitte erneut versuchen.\n");
         }
 
+        class Lagerhaus
+        {
+            public static void LagerhausKaufenMenue()
+            {
+                
+            }
+        }
+
         class Villa
         {
 
@@ -627,7 +643,7 @@ namespace Remake___Einsame_Insel
             MenueBuilder("Level Informationen");
             Console.WriteLine("Leicht:\n-Für alle die schnell vorankommen möchten!-\n");
             Console.WriteLine("Normal:\n-Upgradekosten sind höher als bei Leicht, Rest gleich.-\n");
-            Console.WriteLine("Schwer:\n-Weniger pro Abbau, Upgrades Teurer, Kosten pro Upgrades erhöhen sich stark!-");
+            Console.WriteLine("Schwer:\n-Weniger pro Abbau, Upgrades Teurer");
         }
 
         // Zum skippen von Menüs
