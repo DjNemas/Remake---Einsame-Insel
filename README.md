@@ -13,6 +13,10 @@ Ideen:
 ----------------------------------------------------
 [Grundgerüst wird in Alpha gebaut]
 
+Alpha Version 0.8
+- Ressourcen Limit eingebaut.
+- Mehrere Abfragen zum Überprüfung des Limits hinzugefügt. Sicherheitsvorabfragen, damit Limit niemals überläuft.
+- Noch unsauberer Code. (Wird zum nächsten Update ausgebessert)
 
 Alpha Version 0.7
 - Implementierung von Schwierigkeitsgrad "Normal" und "Schwer".
