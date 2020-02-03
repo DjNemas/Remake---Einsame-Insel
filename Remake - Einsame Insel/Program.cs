@@ -39,19 +39,18 @@ namespace Remake___Einsame_Insel
         static int kostenVillaGold;
         static int addVillaHolz;
         static int addVillaGold;
-        static int addLimitHolz;
-        static int addLimitEisen;
-        static int addLimitGold;
 
         // Zusatzgebäude
         static int lagerHaus;
         static float fKostenLagerhausHolz;
         static float fKostenLagerhausEisen;
         static float fKostenLagerhausGold;
-        static int kostenLagerhausHolz = (int)fKostenLagerhausHolz;
-        static int kostenLagerhausEisen = (int)fKostenLagerhausEisen;
-        static int kostenLagerhausGold = (int)fKostenLagerhausGold;
-        
+        /* Lagerhaus variabel sicherung
+        static int kostenLagerhausHolz;
+        static int kostenLagerhausEisen;
+        static int kostenLagerhausGold;
+        */
+
 
         static void Main(string[] args)
         {
@@ -136,7 +135,13 @@ namespace Remake___Einsame_Insel
                                 fKostenLagerhausHolz = holzLimit * 0.8f;
                                 fKostenLagerhausEisen = eisenLimit * 0.8f;
                                 fKostenLagerhausGold = goldLimit * 0.8f;
-                            }
+                                // Float in Int casten wenn nötig
+                                /* kostenLagerhausHolz = (int)fKostenLagerhausHolz;
+                                kostenLagerhausEisen = (int)fKostenLagerhausEisen;
+                                kostenLagerhausGold = (int)fKostenLagerhausGold;*/
+
+
+    }
                             do
                             {
                                 Console.WriteLine("Level Leicht");
@@ -176,7 +181,7 @@ namespace Remake___Einsame_Insel
                                         break;
                                     case "l":
                                         {
-                                            Lagerhaus.LagerhausKaufenMenue(kostenLagerhausHolz,kostenLagerhausEisen,kostenLagerhausGold,addLimitHolz,addLimitEisen,addLimitGold);
+                                            Lagerhaus.LagerhausKaufenMenue();
                                         }
                                         break;
                                     case "b":
@@ -536,13 +541,13 @@ namespace Remake___Einsame_Insel
         class Lagerhaus
         {
             // Lagerhaus Menü
-            public static void LagerhausKaufenMenue(int kostenLagerhausHolz, int kostenLagerhausEisen, int kostenLagerhausGold, int addLimitHolz, int addLimitEisen, int addLimitGold)
+            public static void LagerhausKaufenMenue()
             {
-                string resVorhanden = LagerhausMenue(kostenLagerhausHolz, kostenLagerhausEisen, kostenLagerhausGold);
+                string resVorhanden = LagerhausMenue();
                 if (resVorhanden == "y")
                 {
                     // Lagerhaus kaufen ja nein?
-                    LagerhausKaufenAbfrage(kostenLagerhausHolz, kostenLagerhausEisen, kostenLagerhausGold, addLimitHolz, addLimitEisen, addLimitGold);
+                    LagerhausKaufenAbfrage();
                 }
                 // Lagerhaus kaufen abbruch
                 if (resVorhanden == "n")
@@ -551,33 +556,49 @@ namespace Remake___Einsame_Insel
                 }
             }
 
-            static void LagerhausKaufenAbfrage(int kostenLagerhausHolz, int kostenLagerhausEisen, int kostenLagerhausGold, int addLimitHolz, int addLimitEisen, int addLimitGold)
+            static void LagerhausKaufenAbfrage()
             {
-                if (holz >= kostenLagerhausHolz && eisen >= kostenVillaEisen && gold >= kostenVillaGold)
+                if (holz >= fKostenLagerhausHolz && eisen >= fKostenLagerhausEisen && gold >= fKostenLagerhausGold)
                 {
                     lagerHaus++;
-                    holz -= kostenLagerhausHolz;
-                    eisen -= kostenLagerhausEisen;
-                    gold -= kostenLagerhausGold;
-                    holzLimit += addLimitHolz * 2;
-                    eisenLimit += addLimitEisen *2;
-                    goldLimit += addLimitGold * 2;
-                    Console.WriteLine("Du hast eine Villa gekauft!");
+                    // ziehe ressourcen ab
+                    holz -= (int)fKostenLagerhausHolz;
+                    eisen -= (int)fKostenLagerhausEisen;
+                    gold -= (int)fKostenLagerhausGold;
+                    // Verdoppel Ressourcen Limit
+                    holzLimit += holzLimit * 2;
+                    eisenLimit += eisenLimit * 2;
+                    goldLimit += goldLimit * 2;
+                    //Kosten Lagerhaus + Berechnung
+                    fKostenLagerhausHolz = holzLimit * 0.8f;
+                    fKostenLagerhausEisen = eisenLimit * 0.8f;
+                    fKostenLagerhausGold = goldLimit * 0.8f;
+                    // setze Ressourcen für Lagerupgrade neu
+
+                    holzLimitPruefung = holzLimit - getHolz;
+                    eisenLimitPruefung = eisenLimit - getEisen;
+                    goldLimitPruefung = goldLimit - getGold;
+                    // Berechne Lagerhauskosten neu
+                    // Float in Int casten wenn nötig
+                    /*kostenLagerhausHolz = (int)fKostenLagerhausHolz;
+                    kostenLagerhausEisen = (int)fKostenLagerhausEisen;
+                    kostenLagerhausGold = (int)fKostenLagerhausGold;*/
+                    Console.WriteLine("Du hast eine Lagerhaus gekauft!");
                 }
                 else
                 {
                     Console.WriteLine("Du hast nicht genug Ressourcen");
                 }
-            }
-        }
+            }            
+        }        
 
-        static string LagerhausMenue(int kostenLagerhausHolz,int kostenLagerhausEisen,int kostenLagerhausGold)
+        static string LagerhausMenue()
         {
             MenueBuilder("Hier kannst du ein Lagerhaus kaufen");
             Console.WriteLine("Ein Lagerhaus kostet:");
-            Console.WriteLine($"{kostenLagerhausHolz} Holz");
-            Console.WriteLine($"{kostenLagerhausEisen} Holz");
-            Console.WriteLine($"{kostenLagerhausGold} Gold\n");
+            Console.WriteLine($"{fKostenLagerhausHolz} Holz");
+            Console.WriteLine($"{fKostenLagerhausEisen} Holz");
+            Console.WriteLine($"{fKostenLagerhausGold} Gold\n");
             Console.WriteLine($"Pro Lagerhaus wird dein Limit jeglicher Ressourcen verdoppelt!");
             Console.WriteLine("Haus jetzt kaufen? (Y/N)");
 
